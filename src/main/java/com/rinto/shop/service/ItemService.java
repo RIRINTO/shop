@@ -19,7 +19,7 @@ import static com.rinto.shop.entity.extend.Item.update;
 
 @Service
 public class ItemService {
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final ItemRepository itemRepository;
 
     public ItemService(ItemRepository itemRepository) {
