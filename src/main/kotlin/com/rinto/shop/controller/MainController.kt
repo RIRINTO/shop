@@ -1,5 +1,6 @@
 package com.rinto.shop.controller
 
+import com.rinto.shop.dto.ItemChangeRequestDTO
 import com.rinto.shop.dto.ItemSaveRequestDTO
 import com.rinto.shop.service.ItemService
 import org.slf4j.Logger
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 
 @Controller
@@ -38,5 +40,18 @@ class MainController(
         itemService.save(itemSaveRequestDTO)
 
         return "redirect:/"
+    }
+
+    @GetMapping("{itemId}")
+    fun getItemInfo(@PathVariable itemId: Int, model: Model): String {
+        model.addAttribute("item", itemService.getItem(itemId))
+
+        return "item/details"
+    }
+
+    @PostMapping("{itemId}")
+    fun editItem(@PathVariable itemId: Int, itemChangeRequestDTO: ItemChangeRequestDTO):String {
+        itemService.editItem(itemId, itemChangeRequestDTO)
+        return "redirect:/$itemId"
     }
 }
