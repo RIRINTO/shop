@@ -9,9 +9,9 @@ import javax.persistence.Table
 @Table
 @Entity
 data class Item(
-    val name: String,
+    var name: String,
 
-    val price: Int
+    var price: Int
 ) {
     @Id
     @GeneratedValue
